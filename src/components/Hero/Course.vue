@@ -82,18 +82,10 @@ export default {
   }
   &__image-scaler {
     flex: 1 0 auto;
-    height: 256px;
     position: relative;
     img,
     picture {
-      position: absolute;
-      z-index: 1;
-      top: 0;
-      left: 0;
       width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center center;
     }
   }
   &__image-caption {
