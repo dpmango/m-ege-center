@@ -1,0 +1,45 @@
+$sm: 480;
+$md: 767;
+$lg: 992;
+$xl: 1440;
+
+// FONTS
+$baseFont: "GT Walsheim Pro", sans-serif;
+$groteskFont: "HK Grotesk", sans-serif;
+$systemFont: -apple-system, "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica", "Ubuntu",
+  "Cantarell", "Arial", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+
+// OPTIONS
+$transitionSpeed: 0.25s;
+$ease: ease-in-out;
+
+// Line-height fix
+$defaultLineHeight: 1.125;
+
+// COLORS
+// Color-names https://htmlcolorcodes.com/color-names/
+$fontColor: #141f3c;
+$colorGray: #4d5569;
+$colorLight: #949db1;
+$colorPrimary: #4346d5;
+$colorPrimaryHover: #3d3fa9;
+$colorAccent: #b5c6ff;
+$colorGreen: #63c6a0;
+$colorGreenMint: #edfdf6;
+$colorRed: #89231f;
+$borderColor: #c0c6d5;
+$colorBg: #fafafa;
+
+// 12-col grid
+$col1: 8.333333%;
+$col2: 16.666667%;
+$col3: 25%;
+$col4: 33.333333%;
+$col5: 41.666667%;
+$col6: 50%;
+$col7: 58.333333%;
+$col8: 66.666667%;
+$col9: 75%;
+$col10: 83.333333%;
+$col11: 91.666667%;
+$col12: 100%;

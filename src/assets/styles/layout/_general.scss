@@ -1,0 +1,30 @@
+* {
+  box-sizing: border-box;
+  outline: none;
+}
+
+body,
+html {
+  background: white;
+  color: $fontColor;
+  font-family: $baseFont;
+  font-size: 11px;
+  line-height: 1.5;
+  min-width: 320px;
+  max-width: 100%;
+  margin: 0;
+  overflow-x: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+}
