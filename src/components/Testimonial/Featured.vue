@@ -82,6 +82,7 @@ export default {
       font-size: 12px;
       margin-top: 20px;
       line-height: 1.6;
+      color: $colorLight;
     }
   }
 }

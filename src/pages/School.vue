@@ -9,7 +9,6 @@
       subtitle="Расписание ученика зависит от выбранных предметов и учебной нагрузки, но в любом случае частично или полностью соответствует следующему графику:"
       :schedule="content.schedule"
     />
-    <StaticFeatures :list="content.features" />
     <StaticReports />
     <StaticCabinet />
     <StaticAtmosphere />
@@ -27,9 +26,9 @@
       :list="[...content.testimonials, ...content.testimonials]"
     />
     <StaticDocuments />
-    <ContactSchool />
     <CtaSignupSchool />
     <StaticInstagram />
+    <ContactSchool />
   </LayoutLanding>
 </template>
 

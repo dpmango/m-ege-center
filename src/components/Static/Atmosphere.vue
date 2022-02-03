@@ -11,17 +11,17 @@
         </p>
       </div>
 
-      <div class="atmo__photos">
-        <div class="atmo__photo">
+      <swiper class="atmo__photos" :options="swiperOptions">
+        <swiper-slide class="atmo__photo">
           <img src="/static/img/static/atmo-1.jpg" />
-        </div>
-        <div class="atmo__photo atmo__photo--primary">
+        </swiper-slide>
+        <swiper-slide class="atmo__photo atmo__photo--primary">
           <img src="/static/img/static/atmo-2.jpg" />
-        </div>
-        <div class="atmo__photo">
+        </swiper-slide>
+        <swiper-slide class="atmo__photo">
           <img src="/static/img/static/atmo-3.jpg" />
-        </div>
-      </div>
+        </swiper-slide>
+      </swiper>
     </div>
   </section>
 </template>
@@ -29,20 +29,28 @@
 <script>
 export default {
   data() {
-    return {}
+    return {
+      swiperOptions: {
+        slidesPerView: "auto",
+        spaceBetween: 10,
+      },
+    }
   },
 }
 </script>
 
 <style lang="scss" scoped>
 .atmo {
-  padding: 94px 0 98px;
+  padding: 32px 0 40px;
   background: $colorBg;
 
   &__head {
     text-align: center;
+    max-width: 255px;
+    margin-left: auto;
+    margin-right: auto;
     p {
-      margin-top: 48px;
+      margin-top: 20px;
       max-width: 648px;
       margin-left: auto;
       margin-right: auto;
@@ -50,25 +58,24 @@ export default {
   }
 
   &__photos {
-    margin: 115px auto 0;
-    max-width: 934px;
-    display: grid;
-    align-items: center;
-    grid-template-columns: repeat(3, auto);
-    grid-gap: 26px;
+    margin: 24px -16px 0;
+    padding: 0 16px;
   }
   &__photo {
     position: relative;
     z-index: 1;
+    flex: 0 0 195px;
+    width: 195px;
     border-radius: 20px;
     overflow: hidden;
     font-size: 0;
     user-select: none;
-    &--primary {
-      box-shadow: -13px 0px 60px rgba(110, 112, 201, 0.15);
-    }
     img {
-      max-width: 100%;
+      width: 100%;
+    }
+    &--primary {
+      flex-basis: 266px;
+      width: 266px;
     }
   }
 }

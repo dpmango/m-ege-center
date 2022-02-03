@@ -1,38 +1,36 @@
 <template>
   <section class="video" :class="className">
     <div class="container">
-      <div class="video__row row">
-        <div class="col col-6">
-          <div class="player" :class="[videoPlaying && 'is-playing']">
-            <div class="player__cover">
-              <img
-                src="/static/img/static/videoCover.jpg"
-                srcSet="/static/img/static/videoCover@2x.jpg 2x"
-                alt="Обложка видео"
-              />
-            </div>
-            <div class="player__video">
-              <iframe
-                src="https://www.youtube.com/embed/yfdZ0QSh3Iw"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen
-              ></iframe>
-            </div>
-            <div class="player__play" @click="playVideo">
-              <SvgIcon name="play" />
-            </div>
+      <div class="video__wrapper">
+        <h2 class="h2-title">Посмотрите видеоролик о школе-экстернат</h2>
+
+        <div class="player" :class="[videoPlaying && 'is-playing']">
+          <div class="player__cover">
+            <img
+              src="/static/img/static/videoCover.jpg"
+              srcSet="/static/img/static/videoCover@2x.jpg 2x"
+              alt="Обложка видео"
+            />
+          </div>
+          <div class="player__video">
+            <iframe
+              src="https://www.youtube.com/embed/yfdZ0QSh3Iw"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+          </div>
+          <div class="player__play" @click="playVideo">
+            <SvgIcon name="play" />
           </div>
         </div>
-        <div class="col col-6">
-          <h2 class="h2-title">Посмотрите видеоролик о школе-экстернат</h2>
-          <p class="video__description p-regular">
-            Главные герои этого видеоролика – наши ученики и педагоги. За три с половиной минуты мы
-            постарались передать атмосферу ЕГЭ-Центра и ответить на ключевые вопросы родителей: кто
-            выбирает экстернат и почему, как строится процесс обучения, кто ведет занятия и зачем
-            проходить 2 года за один.
-          </p>
-        </div>
+
+        <p class="video__description p-regular">
+          Главные герои этого видеоролика – наши ученики и педагоги. За три с половиной минуты мы
+          постарались передать атмосферу ЕГЭ-Центра и ответить на ключевые вопросы родителей: кто
+          выбирает экстернат и почему, как строится процесс обучения, кто ведет занятия и зачем
+          проходить 2 года за один.
+        </p>
       </div>
     </div>
   </section>
@@ -58,12 +56,13 @@ export default {
 
 <style lang="scss" scoped>
 .video {
-  margin: 220px 0 205px 0;
-  &__row {
+  margin: 72px 0 74px 0;
+  &__wrapper {
     align-items: center;
   }
   &__description {
-    margin-top: 46px;
+    margin-top: 28px;
+    max-width: 255px;
   }
 }
 
@@ -71,6 +70,7 @@ export default {
   position: relative;
   z-index: 1;
   overflow: hidden;
+  margin-top: 24px;
   border-radius: 20px;
   max-width: 550px;
   &.is-playing {
@@ -127,8 +127,8 @@ export default {
     transform: translate(-50%, -50%);
     background: white;
     border-radius: 50%;
-    width: 100px;
-    height: 100px;
+    width: 52px;
+    height: 52px;
     color: $colorGreen;
     font-size: 0;
     cursor: pointer;
@@ -136,8 +136,8 @@ export default {
     backface-visibility: hidden;
     transition: 0.25s $ease;
     .svg-icon {
-      font-size: 32px;
-      margin-right: -8px;
+      font-size: 15px;
+      margin-right: -2px;
       transition: 0.25s $ease;
       will-change: transform;
       backface-visibility: hidden;

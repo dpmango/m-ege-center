@@ -32,14 +32,15 @@ export default {
 
 <style lang="scss" scoped>
 .documents {
-  padding: 96px 0 118px 0;
+  padding: 32px 0 40px 0;
 
   &__list {
-    margin: 56px 0 0;
-    padding: 0 0 0 20px;
+    margin: 20px 0 0;
+    padding: 0 0 0 14px;
+    max-width: 270px;
     li {
-      font-size: 18px;
-      margin-bottom: 14px;
+      font-size: 11px;
+      margin-bottom: 6px;
     }
   }
 }

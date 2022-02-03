@@ -39,10 +39,10 @@ export default {
 .online {
   margin: 70px 0 70px;
   &.mt-20 {
-    margin-top: 20px;
+    margin-top: 32px;
   }
   &.mb-150 {
-    margin-bottom: 170px;
+    margin-bottom: 90px;
   }
   &__wrapper {
     align-items: center;

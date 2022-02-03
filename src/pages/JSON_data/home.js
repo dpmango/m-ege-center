@@ -86,6 +86,7 @@ export default {
     author: {
       avatar: "/static/img/avatar/avatar-aleksandra.jpg",
       name: "Александра",
+      position: "Ученица, 11 класс",
     },
   },
   testimonials: [

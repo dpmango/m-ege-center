@@ -56,7 +56,7 @@ export default {
     color: $colorGreen;
   }
   &__subtitle {
-    margin-top: 32px;
+    margin-top: 16px;
     max-width: 602px;
   }
   &__grid {

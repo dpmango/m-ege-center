@@ -43,27 +43,27 @@ export default {
 
 <style lang="scss" scoped>
 .courses {
-  margin: 94px 0 100px 0;
+  margin: 32px 0 40px 0;
 
   &__grid {
-    margin-top: 58px;
+    margin-top: 24px;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 20px;
+    grid-template-columns: 1fr;
+    grid-gap: 12px;
   }
 }
 
 .course {
-  padding: 44px 32px 44px 44px;
+  padding: 20px 30px 22px 30px;
   border: 1.5px solid #cbcbcb;
   border-radius: 20px;
   &__title {
     font-weight: bold;
-    font-size: 30px;
+    font-size: 20px;
     color: $colorPrimary;
   }
   &__description {
-    margin-top: 26px;
+    margin-top: 14px;
   }
 }
 </style>

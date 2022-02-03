@@ -1,56 +1,54 @@
 <template>
   <section class="locations">
-    <div class="locations__content">
-      <div class="locations__content-wrapper">
-        <h2 class="locations__title h2-title">Адрес школы-экстернат</h2>
+    <div class="container">
+      <div class="locations__content">
+        <div class="locations__content-wrapper">
+          <h2 class="locations__title h2-title">Адрес школы-экстернат</h2>
 
-        <div class="locations__primary">
-          <div class="locations__link" @click="() => moveMapToCoords(primaryMetro.station)">
-            <span
-              class="metro"
-              :title="primaryMetro.line.name"
-              :style="{ background: `#${primaryMetro.line.hex_color}` }"
-            />
-            ЕГЭ-Центр Тургеневская
+          <div class="locations__primary">
+            <div class="locations__link" @click="() => moveMapToCoords(primaryMetro.station)">
+              <span
+                class="metro"
+                :title="primaryMetro.line.name"
+                :style="{ background: `#${primaryMetro.line.hex_color}` }"
+              />
+              ЕГЭ-Центр Тургеневская
+            </div>
+            <p class="p-regular">
+              <span class="c-light">Адрес:</span> г. Москва, ул. Мясницкая, д. 40, стр. 1 <br />
+              <span class="c-light">Часы работы:</span> ежедневно с 10:00 до 19:00
+            </p>
+
+            <a class="locations__phone" href="#"> +7 (495) 646-85-92 </a>
           </div>
-          <p class="p-regular">
-            <span class="c-light">Адрес:</span> г. Москва, ул. Мясницкая, д. 40, стр. 1 <br />
-            <span class="c-light">Телефон:</span> +7 (495) 646-85-92 <br />
-            <span class="c-light">Часы работы:</span> ежедневно с 10:00 до 19:00
-          </p>
         </div>
       </div>
-    </div>
 
-    <div class="locations__map">
-      <div class="locations__map-scaler">
-        <!-- <img
-          src="/static/img/map/moscowmap.jpg"
-          srcset="/static/img/map/moscowmap@2x.jpg 2x"
-          alt="map image"
-        /> -->
-        <yandex-map
-          :settings="map.settings"
-          :coords="map.coords"
-          :zoom="map.zoom"
-          :controls="map.controls"
-          :scroll-zoom="false"
-          @map-was-initialized="setMapInstance"
-        >
-          <ymap-marker
-            v-for="marker in markers"
-            :key="marker.id"
-            :marker-id="marker.id"
-            :coords="[marker.lat, marker.lng]"
-            :icon="map.defaultMarker"
-            :hint-content="marker.name"
-            :options="{
-              hideIconOnBalloonOpen: false,
-            }"
+      <div class="locations__map">
+        <div class="locations__map-scaler">
+          <yandex-map
+            :settings="map.settings"
+            :coords="map.coords"
+            :zoom="map.zoom"
+            :controls="map.controls"
+            :scroll-zoom="false"
+            @map-was-initialized="setMapInstance"
           >
-            <MapBalloon slot="balloon" :marker="marker" />
-          </ymap-marker>
-        </yandex-map>
+            <ymap-marker
+              v-for="marker in markers"
+              :key="marker.id"
+              :marker-id="marker.id"
+              :coords="[marker.lat, marker.lng]"
+              :icon="map.defaultMarker"
+              :hint-content="marker.name"
+              :options="{
+                hideIconOnBalloonOpen: false,
+              }"
+            >
+              <MapBalloon slot="balloon" :marker="marker" />
+            </ymap-marker>
+          </yandex-map>
+        </div>
       </div>
     </div>
   </section>
@@ -130,30 +128,39 @@ export default {
 
 <style lang="scss" scoped>
 .locations {
-  display: flex;
   position: relative;
   overflow: hidden;
   background: $colorBg;
-  min-height: 593px;
   &__content {
-    flex: 0 0 50%;
-    padding: 102px 60px 100px calc((100vw - 1240px) / 2 + 35px);
+    padding: 28px 0px 0px 0px;
     display: flex;
     flex-direction: column;
   }
 
+  &__phone {
+    display: inline-block;
+    margin-top: 12px;
+    color: $colorPrimary;
+    font-size: 12px;
+    cursor: pointer;
+    transition: color 0.25s $ease;
+    &:hover {
+      color: $colorPrimaryHover;
+    }
+  }
+
   &__map {
-    flex: 0 0 50%;
-    width: 50%;
+    margin-top: 0px;
     display: flex;
     flex-direction: column;
-    padding-right: calc((100vw - 1240px) / 2 + 35px);
+    height: 350px;
+    margin-left: -16px;
+    margin-right: -16px;
   }
   &__map-scaler {
     flex: 1 0 auto;
     display: flex;
     flex-direction: column;
-    max-width: 780px;
     position: relative;
     img,
     picture {
@@ -197,7 +204,8 @@ export default {
     }
   }
   &__primary {
-    margin-top: 56px;
+    margin-top: 24px;
+    margin-bottom: 20px;
     p {
       margin-top: 10px;
       line-height: 1.65;
@@ -212,16 +220,5 @@ export default {
   height: 9px;
   margin-right: 16px;
   border-radius: 50%;
-}
-
-@include r(1240) {
-  .locations {
-    &__content {
-      padding-left: 35px;
-    }
-    &__map {
-      padding-right: 35px;
-    }
-  }
 }
 </style>

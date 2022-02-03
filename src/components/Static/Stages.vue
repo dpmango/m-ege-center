@@ -95,13 +95,13 @@ export default {
 
 <style lang="scss" scoped>
 .stages {
-  margin: 98px 0 109px 0;
+  margin: 35px 0 35px 0;
 
   &__grid {
-    margin-top: 108px;
+    margin-top: 24px;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 102px 20px;
+    grid-template-columns: 1fr;
+    grid-gap: 28px;
   }
 }
 
@@ -111,16 +111,16 @@ export default {
     align-items: center;
   }
   &__num {
-    margin-right: 20px;
-    min-width: 50px;
-    min-height: 52px;
+    margin-right: 14px;
+    min-width: 34px;
+    min-height: 34px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     background: #f6f6fc;
-    border-radius: 15px;
+    border-radius: 10px;
     font-weight: bold;
-    font-size: 30px;
+    font-size: 22px;
     color: $colorPrimary;
   }
   &__title {
@@ -128,7 +128,7 @@ export default {
   }
   &__description {
     line-height: 1.6;
-    margin-top: 26px;
+    margin-top: 10px;
     max-width: 305px;
   }
 }

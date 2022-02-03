@@ -32,10 +32,8 @@ export default {
   data() {
     return {
       photos: [
-        "/static/img/insta/insta-1.jpg",
         "/static/img/insta/insta-2.jpg",
         "/static/img/insta/insta-3.jpg",
-        "/static/img/insta/insta-4.jpg",
         "/static/img/insta/insta-5.jpg",
       ],
     }
@@ -45,7 +43,7 @@ export default {
 
 <style lang="scss" scoped>
 .insta {
-  margin: 105px 0;
+  margin: 75px 0 70px;
   &__wrapper {
     display: flex;
     flex-direction: column;
@@ -57,14 +55,14 @@ export default {
   &__badge {
     position: relative;
     z-index: 1;
-    margin-top: 52px;
+    margin-top: 14px;
     display: inline-flex;
     align-items: center;
     border: 1px solid #cbcbcb;
     border-radius: 30px;
-    padding: 8px 26px;
+    padding: 4px 17px;
     color: $colorGray;
-    font-size: 18px;
+    font-size: 12px;
     transition: color 0.25s $ease, border 0.25s $ease;
     overflow: hidden;
     &::after {
@@ -96,8 +94,8 @@ export default {
     .svg-icon {
       position: relative;
       z-index: 2;
-      font-size: 21px;
-      margin-right: 12px;
+      font-size: 12px;
+      margin-right: 8px;
     }
     span {
       position: relative;
@@ -106,17 +104,18 @@ export default {
   }
 
   &__photos {
-    margin-top: 54px;
+    margin-top: 34px;
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-gap: 20px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 8px;
+    justify-items: center;
   }
   &__photo {
     display: inline-block;
     position: relative;
     z-index: 1;
     padding-bottom: 100%;
-    width: 141px;
+    width: 82px;
     border-radius: 5px;
     overflow: hidden;
     font-size: 0;

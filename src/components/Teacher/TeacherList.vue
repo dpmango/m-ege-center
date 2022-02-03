@@ -54,7 +54,7 @@ export default {
     }
   }
   &__subtitle {
-    margin-top: 56px;
+    margin-top: 16px;
     max-width: 480px;
   }
   &__slider {
