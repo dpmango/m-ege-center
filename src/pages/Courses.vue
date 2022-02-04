@@ -1,6 +1,7 @@
 <template>
   <LayoutLanding>
     <HeroCourse />
+    <StaticTopics />
     <StaticStudyPlan />
     <StaticSchedule
       label="Расписание занятий"

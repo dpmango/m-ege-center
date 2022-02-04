@@ -13,6 +13,7 @@ import StaticAtmosphere from "./Atmosphere"
 import StaticStages from "./Stages"
 import StaticDocuments from "./Documents"
 import StaticInstagram from "./Instagram"
+import StaticTopics from "./Topics"
 
 export {
   StaticStudyPlan,
@@ -30,4 +31,5 @@ export {
   StaticStages,
   StaticDocuments,
   StaticInstagram,
+  StaticTopics,
 }
