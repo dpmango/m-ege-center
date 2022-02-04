@@ -27,6 +27,7 @@ export default {
 .signup {
   margin: 70px 0;
   &__wrapper {
+    text-align: center;
     h2 {
       line-height: $defaultLineHeight;
     }

@@ -7,7 +7,7 @@
     <StaticFeatures
       title="Мы уверены в результате"
       :list="content.featuresResult"
-      className="pb-100"
+      className="smaller"
     />
     <TeacherList
       :list="content.teachers"
@@ -23,6 +23,7 @@
     />
     <Gallery :slides="content.gallery" />
     <ContactLocations />
+    <CtaSignup />
   </LayoutLanding>
 </template>
 

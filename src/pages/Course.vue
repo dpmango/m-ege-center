@@ -34,21 +34,24 @@ export default {
 
 <style lang="scss" scoped>
 .course {
-  margin-top: 44px;
-  margin-bottom: 105px;
-  &__description {
-    margin-top: 46px;
-    font-size: 20px;
+  margin-top: 16px;
+  margin-bottom: 70px;
+  .h2-title {
     line-height: 1.2;
+  }
+  &__description {
+    margin-top: 16px;
+    font-size: 11px;
+    line-height: 1.6;
   }
 }
 
 .section {
-  margin: 40px 0 42px;
+  margin: 30px 0 44px;
   &__title {
     font-weight: bold;
-    font-size: 30px;
-    margin-bottom: 34px;
+    font-size: 16px;
+    margin-bottom: 16px;
   }
 }
 </style>

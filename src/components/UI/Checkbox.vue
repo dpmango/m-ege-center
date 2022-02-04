@@ -67,8 +67,8 @@ export default {
   &__label {
     position: relative;
     z-index: 2;
-    font-size: 14px;
-    padding-left: 18px;
+    font-size: 11px;
+    padding-left: 12px;
     color: $colorGray;
     cursor: pointer;
     transition: opacity 0.25s $ease;
@@ -110,8 +110,8 @@ export default {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 20px;
-    height: 20px;
+    width: 16px;
+    height: 16px;
     background: transparent;
     border-radius: 5px;
     border: 1px solid #cbcbcb;

@@ -37,19 +37,20 @@ export default {
 
 <style lang="scss" scoped>
 .faqCard {
-  border: 1px solid #e0e0e0;
+  border-top: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
   margin-top: -1px;
   &__toggle {
     display: flex;
     align-items: center;
-    font-size: 20px;
-    padding: 16px 24px;
+    font-size: 11px;
+    padding: 10px 16px;
     cursor: pointer;
     transition: color 0.25s $ease;
     .svg-icon {
       flex: 0 0 auto;
       margin-left: auto;
-      font-size: 8px;
+      font-size: 6px;
       color: #757575;
       will-change: transform;
       backface-visibility: hidden;
@@ -62,9 +63,13 @@ export default {
       }
     }
   }
+  &__label {
+    padding-right: 10px;
+  }
   &__content {
-    padding: 18px 24px 24px;
+    padding: 16px 16px 20px;
     display: block;
+    font-size: 10px;
     color: $fontColor;
     line-height: 1.5;
   }

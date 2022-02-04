@@ -17,9 +17,7 @@
 
     <div class="course__description p-regular" v-if="description">{{ description }}</div>
 
-    <router-link to="#" class="iconed-link">
-      Узнать подробнее <SvgIcon name="arrow-right"
-    /></router-link>
+    <router-link to="#" class="iconed-link"> подробнее <SvgIcon name="arrow-right" /></router-link>
   </div>
 </template>
 
@@ -39,10 +37,10 @@ export default {
 
 <style lang="scss" scoped>
 .course {
-  padding: 44px 44px 56px;
+  padding: 20px 20px;
   background: white;
   box-shadow: 0px 0px 30px rgba(110, 112, 201, 0.1);
-  border-radius: 30px;
+  border-radius: 15px;
 
   &__head {
     display: flex;
@@ -50,12 +48,12 @@ export default {
   }
 
   &__head-content {
-    padding-left: 20px;
+    padding-left: 12px;
   }
 
   &__image {
     flex: 0 0 auto;
-    width: 52px;
+    width: 36px;
     font-size: 0;
     img {
       max-width: 100%;
@@ -64,26 +62,29 @@ export default {
 
   &__title {
     font-weight: bold;
-    font-size: 24px;
+    font-size: 12px;
   }
 
   &__price {
     font-weight: 500;
-    margin-top: 8px;
+    margin-top: 4px;
+    font-size: 10px;
     color: $colorGray;
   }
 
   &__description {
-    margin-top: 26px;
+    margin-top: 22px;
+    max-width: 220px;
   }
 }
 
 .iconed-link {
-  margin-top: 28px;
+  margin-top: 14px;
   position: relative;
   display: inline-flex;
   align-items: center;
   font-weight: bold;
+  font-size: 12px;
   text-decoration: underline;
   transition: color 0.25s $ease;
   .svg-icon {

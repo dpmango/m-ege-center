@@ -49,7 +49,7 @@ export default {
   background: $colorBg;
   padding: 32px 0 36px;
   &.compact {
-    padding: 50px 0 80px 0px;
+    padding: 16px 0 8px 0px;
     .testimonials__head {
       align-items: center;
     }

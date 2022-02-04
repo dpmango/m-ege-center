@@ -31,14 +31,14 @@ export default {
 
 <style lang="scss" scoped>
 .courses {
-  padding: 80px 0 95px;
+  padding: 32px 0 44px;
   background: $colorBg;
 
   &__grid {
-    margin-top: 56px;
+    margin-top: 18px;
     display: grid;
-    grid-gap: 20px;
-    grid-template-columns: 1fr 1fr;
+    grid-gap: 16px;
+    grid-template-columns: 1fr;
   }
 }
 </style>

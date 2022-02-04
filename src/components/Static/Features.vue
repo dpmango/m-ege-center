@@ -30,9 +30,6 @@ export default {
   &.bg-white {
     background: white;
   }
-  &.pb-100 {
-    padding-bottom: 110px;
-  }
   &__title {
     margin-top: -10px;
     margin-bottom: 70px;
@@ -43,7 +40,20 @@ export default {
   &__grid {
     display: grid;
     grid-template-columns: 1fr;
-    grid-gap: 42px;
+    grid-gap: 30px;
+  }
+  &.smaller {
+    padding-top: 40px;
+    padding-bottom: 36px;
+    .features__title {
+      margin-bottom: 24px;
+    }
+
+    .feature {
+      &__title {
+        font-size: 20px;
+      }
+    }
   }
 }
 

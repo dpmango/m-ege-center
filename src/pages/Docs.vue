@@ -8,8 +8,10 @@
           <h2 class="section__title">{{ section.title }}</h2>
           <div class="doc" v-for="(doc, idx) in section.docs" :key="idx">
             <div class="doc__label" v-html="doc.label" />
-            <div v-if="doc.meta" class="doc__meta">{{ doc.meta }}</div>
-            <a v-if="doc.link" :href="doc.link" class="doc__link">cкачать</a>
+
+            <div v-if="doc.meta" class="doc__meta">
+              <a v-if="doc.link" :href="doc.link" class="doc__link">cкачать PDF</a> {{ doc.meta }}
+            </div>
           </div>
         </div>
       </div>
@@ -32,43 +34,33 @@ export default {
 
 <style lang="scss" scoped>
 .docs {
-  margin-top: 44px;
-  margin-bottom: 105px;
+  margin-top: 32px;
+  margin-bottom: 64px;
+  .h2-title {
+    line-height: 1.2;
+  }
 }
 
 .section {
-  margin: 44px 0 60px;
+  margin: 22px 0 42px;
   &__title {
     font-weight: bold;
-    font-size: 30px;
-    margin-bottom: 24px;
+    font-size: 16px;
+    margin-bottom: 20px;
   }
 }
 
 .doc {
-  display: flex;
-  border: 1px solid #e0e0e0;
-  padding: 16px 24px;
-  margin-top: -1px;
-  font-size: 20px;
-  &__label,
-  &__meta,
-  &__link {
-    flex: 0 0 auto;
-    width: 100%;
-  }
-  &__label {
-    max-width: 70%;
-    padding-right: 30px;
+  font-size: 11px;
+  margin-bottom: 24px;
+  &:last-child {
+    margin-bottom: 0;
   }
   &__meta {
-    max-width: 15%;
-    padding-right: 10px;
+    margin-top: 4px;
   }
   &__link {
     display: inline-block;
-    max-width: 15%;
-    text-align: right;
     color: $colorPrimary;
     text-decoration: underline;
     transition: color 0.25s $ease;

@@ -40,7 +40,7 @@ export default {
 
 <style lang="scss" scoped>
 .teachers {
-  margin: 44px 0 12px;
+  margin: 30px 0 0px;
   &__subtitle {
     margin-top: 30px;
     max-width: 672px;
@@ -48,16 +48,11 @@ export default {
 }
 
 .section {
-  margin: 75px 0 90px;
+  margin: 44px 0 48px;
   &__title {
     font-weight: bold;
-    font-size: 35px;
-    line-height: 40px;
-    margin-bottom: 54px;
-  }
-  ::v-deep .teachers__grid {
-    grid-gap: 72px 0;
-    margin-top: 0;
+    font-size: 20px;
+    margin-bottom: 24px;
   }
 }
 </style>

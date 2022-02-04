@@ -28,15 +28,15 @@ export default {
 
 <style lang="scss" scoped>
 .faq {
-  margin-top: 44px;
-  margin-bottom: 105px;
+  margin-top: 30px;
+  margin-bottom: 45px;
 }
 
 .section {
-  margin: 44px 0 60px;
+  margin: 16px 0 48px;
   &__title {
     font-weight: bold;
-    font-size: 30px;
+    font-size: 16px;
     margin-bottom: 24px;
   }
 }

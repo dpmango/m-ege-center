@@ -19,5 +19,7 @@ export default {
 <style lang="scss" scoped>
 .faqList {
   position: relative;
+  margin-left: -16px;
+  margin-right: -16px;
 }
 </style>
