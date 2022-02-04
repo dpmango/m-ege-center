@@ -35,8 +35,8 @@
             <a class="header__phone" href="tel:+74956468592">
               <SvgIcon name="phone" />
             </a>
-            <div class="header__hamburger">
-              <div class="hamburger">
+            <div class="header__hamburger" @click="() => (menuActive = !menuActive)">
+              <div class="hamburger" :class="[menuActive && 'is-active']">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -44,6 +44,24 @@
             </div>
           </div>
         </div>
+
+        <ul class="header__menu">
+          <li v-for="(li, idx) in menu" :key="idx">
+            <a v-if="li.submenu">{{ li.label }} <SvgIcon name="caret" /></a>
+            <router-link v-else :to="li.to">{{ li.label }}</router-link>
+
+            <ul v-if="li.submenu">
+              <li v-for="(subli, idx) in li.submenu" :key="idx">
+                <div class="header__menu-sub">{{ subli.title }} <SvgIcon name="caret" /></div>
+                <ul v-if="subli.list">
+                  <li v-for="(lastli, idx) in subli.list" :key="idx">
+                    <router-link :to="lastli.to">{{ lastli.label }}</router-link>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
       </div>
     </div>
   </header>
@@ -56,67 +74,70 @@ import { mapMutations } from "vuex"
 export default {
   data() {
     return {
-      activeSubmenu: null,
+      menuActive: false,
 
       menu: [
-        { to: "/courses", label: "Курсы", submenu: 1 },
+        {
+          to: "/courses",
+          label: "Курсы",
+          submenu: [
+            {
+              title: "Курсы ЕГЭ для 11 класса",
+              list: [
+                { to: "/course/1", label: "Математика" },
+                { to: "/course/1", label: "Физика" },
+                { to: "/course/1", label: "Химия" },
+                { to: "/course/1", label: "Биология" },
+                { to: "/course/1", label: "История" },
+                { to: "/course/1", label: "Обществознание" },
+                { to: "/course/1", label: "Русский язык" },
+                { to: "/course/1", label: "Литература" },
+                { to: "/course/1", label: "Информатика" },
+                { to: "/course/1", label: "Английский язык" },
+                { to: "/course/1", label: "Итоговое сочинение" },
+              ],
+            },
+            {
+              title: "Курсы ЕГЭ для 10 класса",
+              list: [
+                { to: "/course/1", label: "Математика" },
+                { to: "/course/1", label: "Физика" },
+                { to: "/course/1", label: "Химия" },
+                { to: "/course/1", label: "Биология" },
+                { to: "/course/1", label: "История" },
+                { to: "/course/1", label: "Обществознание" },
+                { to: "/course/1", label: "Русский язык" },
+                { to: "/course/1", label: "Английский язык" },
+              ],
+            },
+            {
+              title: "Курсы ОГЭ для 9 класса",
+              list: [
+                { to: "/course/1", label: "Математика" },
+                { to: "/course/1", label: "Физика" },
+                { to: "/course/1", label: "Химия" },
+                { to: "/course/1", label: "Биология" },
+                { to: "/course/1", label: "История" },
+                { to: "/course/1", label: "Обществознание" },
+                { to: "/course/1", label: "Русский язык" },
+                { to: "/course/1", label: "Английский язык" },
+              ],
+            },
+            {
+              title: "Другое",
+              list: [
+                { to: "/study-plans", label: "Учебные планы" },
+                { to: "/", label: "Пробный ЕГЭ" },
+              ],
+            },
+          ],
+        },
         { to: "/school", label: "Школа-экстернат" },
         { to: "/teachers", label: "Преподаватели" },
         { to: "/faq", label: "Вопрос-ответ" },
         { to: "/docs", label: "Документы" },
         { to: "/price", label: "Стоимость" },
         { to: "/contact", label: "Адреса" },
-      ],
-      submenu: [
-        {
-          title: "Курсы ЕГЭ для 11 класса",
-          list: [
-            { to: "/course/1", label: "Математика" },
-            { to: "/course/1", label: "Физика" },
-            { to: "/course/1", label: "Химия" },
-            { to: "/course/1", label: "Биология" },
-            { to: "/course/1", label: "История" },
-            { to: "/course/1", label: "Обществознание" },
-            { to: "/course/1", label: "Русский язык" },
-            { to: "/course/1", label: "Литература" },
-            { to: "/course/1", label: "Информатика" },
-            { to: "/course/1", label: "Английский язык" },
-            { to: "/course/1", label: "Итоговое сочинение" },
-          ],
-        },
-        {
-          title: "Курсы ЕГЭ для 10 класса",
-          list: [
-            { to: "/course/1", label: "Математика" },
-            { to: "/course/1", label: "Физика" },
-            { to: "/course/1", label: "Химия" },
-            { to: "/course/1", label: "Биология" },
-            { to: "/course/1", label: "История" },
-            { to: "/course/1", label: "Обществознание" },
-            { to: "/course/1", label: "Русский язык" },
-            { to: "/course/1", label: "Английский язык" },
-          ],
-        },
-        {
-          title: "Курсы ОГЭ для 9 класса",
-          list: [
-            { to: "/course/1", label: "Математика" },
-            { to: "/course/1", label: "Физика" },
-            { to: "/course/1", label: "Химия" },
-            { to: "/course/1", label: "Биология" },
-            { to: "/course/1", label: "История" },
-            { to: "/course/1", label: "Обществознание" },
-            { to: "/course/1", label: "Русский язык" },
-            { to: "/course/1", label: "Английский язык" },
-          ],
-        },
-        {
-          title: "Другое",
-          list: [
-            { to: "/study-plans", label: "Учебные планы" },
-            { to: "/", label: "Пробный ЕГЭ" },
-          ],
-        },
       ],
     }
   },
@@ -129,7 +150,7 @@ export default {
 
 <style lang="scss" scoped>
 .header {
-  position: absolute;
+  position: relative;
   top: 0;
   left: 0;
   right: 0;
@@ -201,20 +222,49 @@ export default {
     margin-left: 20px;
   }
 
-  &__overlay {
-    position: fixed;
-    z-index: 1;
-    top: 195px;
-    left: 0;
-    right: 0;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.15);
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.25s $ease;
-    &.is-active {
-      opacity: 1;
-      pointer-events: all;
+  &__menu {
+    margin: 14px 0;
+    padding: 0;
+    li {
+      display: block;
+      font-size: 16px;
+      line-height: 15px;
+      margin: -6px -4px 20px;
+      ul {
+        margin: 18px 4px 14px 22px;
+        li {
+          font-size: 14px;
+        }
+      }
+    }
+    a {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 4px;
+      cursor: pointer;
+      transition: color 0.25s $ease;
+      .svg-icon {
+        margin-left: 10px;
+        font-size: 6px;
+      }
+      &:hover {
+        color: $colorPrimary;
+      }
+    }
+  }
+  &__menu-sub {
+    display: inline-flex;
+    align-items: center;
+    font-size: 14px;
+    padding: 6px 4px;
+    transition: color 0.25s $ease;
+    cursor: pointer;
+    .svg-icon {
+      margin-left: 10px;
+      font-size: 6px;
+    }
+    &:hover {
+      color: $colorPrimary;
     }
   }
 }
