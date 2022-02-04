@@ -134,7 +134,7 @@ export default {
 <style lang="scss" scoped>
 .footer {
   position: relative;
-  padding: 34px 14px 34px;
+  padding: 34px 0px 34px;
   background: $colorBg;
   &__top {
     position: relative;

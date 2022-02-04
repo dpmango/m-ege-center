@@ -45,7 +45,7 @@
           </div>
         </div>
 
-        <slide-up-down :active="menuActive" class="header__menu-opener">
+        <slide-up-down :active="menuActive" class="header__menu-opener" :fixPxForward="-4">
           <div class="header__menu">
             <li v-for="(li, idx) in menu" :key="idx">
               <a
@@ -57,7 +57,12 @@
               </a>
               <router-link v-else :to="li.to">{{ li.label }}</router-link>
 
-              <slide-up-down :active="activeSubmenu === idx" v-if="li.submenu" tag="ul">
+              <slide-up-down
+                :active="activeSubmenu === idx"
+                v-if="li.submenu"
+                tag="ul"
+                :fixPxForward="-26"
+              >
                 <li v-for="(subli, idx) in li.submenu" :key="idx">
                   <div
                     class="header__menu-sub"
@@ -66,7 +71,12 @@
                   >
                     {{ subli.title }} <SvgIcon name="caret" />
                   </div>
-                  <slide-up-down :active="activeSubmenu2Lvl === idx" v-if="subli.list" tag="ul">
+                  <slide-up-down
+                    :active="activeSubmenu2Lvl === idx"
+                    v-if="subli.list"
+                    tag="ul"
+                    :fixPxForward="-26"
+                  >
                     <li v-for="(lastli, idx) in subli.list" :key="idx">
                       <router-link :to="lastli.to">{{ lastli.label }}</router-link>
                     </li>
@@ -82,7 +92,7 @@
 </template>
 
 <script>
-import SlideUpDown from "vue-slide-up-down"
+import SlideUpDown from "@/plugins/SlideToggle"
 
 export default {
   components: {
@@ -161,11 +171,9 @@ export default {
   },
   methods: {
     handleSubmenuClick(idx) {
-      console.log(idx)
       this.activeSubmenu = this.activeSubmenu === idx ? null : idx
     },
     handleSubmenu2Click(idx) {
-      console.log(idx)
       this.activeSubmenu2Lvl = this.activeSubmenu2Lvl === idx ? null : idx
     },
   },
@@ -175,9 +183,6 @@ export default {
 <style lang="scss" scoped>
 .header {
   position: relative;
-  top: 0;
-  left: 0;
-  right: 0;
   z-index: 9;
   &__wrapper {
     position: relative;
@@ -241,26 +246,23 @@ export default {
     margin-left: 20px;
   }
 
-  &__menu-opener {
-    padding: 14px 0;
-    transition-timing-function: linear;
-    // backface-visibility: hidden;
-    // transform: translateZ(0);
-    // will-change: height;
-  }
+  // &__menu-opener {
+  //   // backface-visibility: hidden;
+  //   // transform: translateZ(0);
+  //   // will-change: height;
+  // }
 
   &__menu {
-    margin: 0px 0;
+    margin: 14px 0;
     padding: 0;
     li {
       display: block;
       font-size: 16px;
       line-height: 15px;
-      margin: -6px -4px 20px;
+      margin: 0px 0px 26px;
 
       ul {
-        margin: 18px 4px 14px 22px;
-        transition-timing-function: linear;
+        margin: 24px 0px 14px 18px;
         // backface-visibility: hidden;
         // transform: translateZ(0);
         // will-change: height;
@@ -276,7 +278,7 @@ export default {
     a {
       display: inline-flex;
       align-items: center;
-      padding: 6px 4px;
+      padding: 0px 0px;
       cursor: pointer;
       transition: color 0.25s $ease;
       .svg-icon {
@@ -299,7 +301,7 @@ export default {
     display: inline-flex;
     align-items: center;
     font-size: 14px;
-    padding: 6px 4px;
+    padding: 0px 4px;
     transition: color 0.25s $ease;
     cursor: pointer;
     .svg-icon {

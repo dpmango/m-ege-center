@@ -42,34 +42,32 @@
                   </p>
 
                   <a class="location__phone" href="#"> +7 (495) 646-85-92 </a>
-                  <span class="location__show">Показать на карте</span>
-                  <div class="locations__map">
-                    <div class="locations__map-scaler">
-                      <yandex-map
-                        :settings="map.settings"
-                        :coords="map.coords"
-                        :zoom="map.zoom"
-                        :controls="map.controls"
-                        :scroll-zoom="false"
-                        @map-was-initialized="setMapInstance"
-                      >
-                        <ymap-marker
-                          v-for="marker in markers"
-                          :key="marker.id"
-                          :marker-id="marker.id"
-                          :coords="[marker.lat, marker.lng]"
-                          :icon="map.defaultMarker"
-                          :hint-content="marker.name"
-                          :options="{
-                            hideIconOnBalloonOpen: false,
-                          }"
-                        >
-                          <MapBalloon slot="balloon" :marker="marker" />
-                        </ymap-marker>
-                      </yandex-map>
-                    </div>
-                  </div>
+                  <span class="location__show" @click="() => showMap(0)">Показать на карте</span>
                 </div>
+                <slide-up-down :active="showingMap.includes(0)" class="locations__map">
+                  <div class="locations__map-scaler">
+                    <yandex-map
+                      :settings="map.settings"
+                      :coords="map.coords"
+                      :zoom="map.zoom"
+                      :controls="map.controls"
+                      :scroll-zoom="false"
+                    >
+                      <ymap-marker
+                        :marker-id="getMarker(1).id"
+                        marker-type="placemark"
+                        :coords="[getMarker(1).lat, getMarker(1).lng]"
+                        :icon="map.defaultMarker"
+                        :hint-content="getMarker(1).name"
+                        :options="{
+                          hideIconOnBalloonOpen: false,
+                        }"
+                      >
+                        <MapBalloon slot="balloon" :marker="getMarker(1)" />
+                      </ymap-marker>
+                    </yandex-map>
+                  </div>
+                </slide-up-down>
               </slide-up-down>
             </div>
           </div>
@@ -80,8 +78,13 @@
           </ul>
 
           <div class="locations__list" v-if="locations">
-            <div class="location" v-for="link in locations" :key="link.id" :data-id="link.id">
-              <div class="location__toggle" @click="() => toggleLocation(0)">
+            <div
+              class="location"
+              v-for="link in locationsWithoutPrimary"
+              :key="link.id"
+              :data-id="link.id"
+            >
+              <div class="location__toggle" @click="() => toggleLocation(link.id)">
                 <div class="locations__link">
                   <span
                     class="metro"
@@ -93,7 +96,7 @@
                 <SvgIcon name="caret" />
               </div>
 
-              <slide-up-down :active="openedLocation === 0" :duration="300">
+              <slide-up-down :active="openedLocation === link.id" :duration="300">
                 <div class="location__content">
                   <p class="p-regular">
                     <span class="c-light">Адрес:</span> г. Москва, ул. Мясницкая, д. 40, стр. 1
@@ -102,35 +105,34 @@
                   </p>
 
                   <a class="location__phone" href="#"> +7 (495) 646-85-92 </a>
-                  <span class="location__show">Показать на карте</span>
-
-                  <div class="locations__map">
-                    <div class="locations__map-scaler">
-                      <yandex-map
-                        :settings="map.settings"
-                        :coords="map.coords"
-                        :zoom="map.zoom"
-                        :controls="map.controls"
-                        :scroll-zoom="false"
-                        @map-was-initialized="setMapInstance"
-                      >
-                        <ymap-marker
-                          v-for="marker in markers"
-                          :key="marker.id"
-                          :marker-id="marker.id"
-                          :coords="[marker.lat, marker.lng]"
-                          :icon="map.defaultMarker"
-                          :hint-content="marker.name"
-                          :options="{
-                            hideIconOnBalloonOpen: false,
-                          }"
-                        >
-                          <MapBalloon slot="balloon" :marker="marker" />
-                        </ymap-marker>
-                      </yandex-map>
-                    </div>
-                  </div>
+                  <span class="location__show" @click="() => showMap(link.id)">
+                    Показать на карте
+                  </span>
                 </div>
+                <slide-up-down :active="showingMap.includes(link.id)" class="locations__map">
+                  <div class="locations__map-scaler">
+                    <yandex-map
+                      :settings="map.settings"
+                      :coords="map.coords"
+                      :zoom="map.zoom"
+                      :controls="map.controls"
+                      :scroll-zoom="false"
+                    >
+                      <ymap-marker
+                        :marker-id="getMarker(link.id).id"
+                        marker-type="placemark"
+                        :coords="[getMarker(link.id).lat, getMarker(link.id).lng]"
+                        :icon="map.defaultMarker"
+                        :hint-content="getMarker(link.id).name"
+                        :options="{
+                          hideIconOnBalloonOpen: false,
+                        }"
+                      >
+                        <MapBalloon slot="balloon" :marker="getMarker(link.id)" />
+                      </ymap-marker>
+                    </yandex-map>
+                  </div>
+                </slide-up-down>
               </slide-up-down>
             </div>
           </div>
@@ -152,6 +154,7 @@ export default {
   data() {
     return {
       openedLocation: null,
+      showingMap: [],
       locations: locations,
       mapInstance: null,
       map: {
@@ -172,31 +175,14 @@ export default {
     }
   },
   computed: {
-    markers() {
-      return [
-        // mapped list + primary
-        // should be cleaner with backend
-        ...this.locations.map((x) => x.station),
-        {
-          ...getStationByName("Тургеневская"),
-          ...{
-            title: `ЕГЭ-Центр Тургеневская`,
-            hex_color: getLineByStation("Тургеневская").hex_color,
-            meta: {
-              address: "ул. Гостиничная, д. 3",
-              phone: "ежедневно с 10:00 до 19:00",
-              hours: "+7 (495) 646-85-92",
-            },
-          },
-        },
-      ]
-    },
-
     primaryMetro() {
       return {
         line: getLineByStation("Тургеневская"),
         station: getStationByName("Тургеневская"),
       }
+    },
+    locationsWithoutPrimary() {
+      return this.locations.slice(1, this.locations.length)
     },
   },
   methods: {
@@ -207,11 +193,17 @@ export default {
         this.openedLocation = id
       }
     },
-    moveMapToCoords({ lat, lng, id }) {
-      this.mapInstance.setCenter([lat, lng])
-      this.mapInstance.setZoom(13)
-      // this.mapInstance.objects.balloon.open(id)
+    showMap(id) {
+      if (this.showingMap.includes(id)) {
+        this.showingMap = this.showingMap.filter((x) => x !== id)
+      } else {
+        this.showingMap = [...this.showingMap, id]
+      }
     },
+    getMarker(id) {
+      return this.locations.find((x) => x.id === id).station
+    },
+
     setMapInstance(instance) {
       this.mapInstance = instance
     },
@@ -266,18 +258,15 @@ export default {
   }
 
   &__map {
-    margin-top: 24px;
     display: flex;
     flex-direction: column;
-    height: 350px;
-    margin-left: -16px;
-    margin-right: -16px;
   }
   &__map-scaler {
     flex: 1 0 auto;
     display: flex;
     flex-direction: column;
     position: relative;
+    height: 350px;
     img,
     picture {
       position: absolute;
@@ -322,12 +311,16 @@ export default {
   &__primary {
     margin-top: 24px;
     margin-bottom: 20px;
+    margin-left: -16px;
+    margin-right: -16px;
     p {
       margin-top: 10px;
       line-height: 1.65;
     }
   }
   &__list {
+    margin-left: -16px;
+    margin-right: -16px;
     .locations__link {
       font-weight: 400;
       padding: 3px 0;
@@ -348,13 +341,10 @@ export default {
   border-top: 1px solid $borderColor;
   border-bottom: 1px solid $borderColor;
   margin-bottom: -1px;
-  margin-left: -16px;
-  margin-right: -16px;
-  padding: 0px 16px;
   &__toggle {
     display: flex;
     align-items: center;
-    padding: 12px 0;
+    padding: 12px 16px;
     font-size: 12px;
     cursor: pointer;
     .svg-icon {
@@ -373,7 +363,8 @@ export default {
   &__content {
     display: flex;
     flex-direction: column;
-    padding-left: 18px;
+    padding-left: 34px;
+    padding-right: 16px;
     padding-bottom: 20px;
   }
   &__phone,

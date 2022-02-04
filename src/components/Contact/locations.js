@@ -7,6 +7,7 @@ const balloonMeta = {
 }
 
 const stations = [
+  ["Тургеневская", "Тургеневская"],
   ["Вернадского", "Проспект Вернадского"],
   ["Багратионовская", "Багратионовская"],
   ["Измайловская", "Измайловская"],
@@ -25,7 +26,7 @@ const stations = [
 export default stations.map(([title, station_name], idx) => {
   const line = getLineByStation(station_name)
   return {
-    id: idx,
+    id: idx + 1,
     name: `ЕГЭ-Центр ${title}`,
     line,
 
