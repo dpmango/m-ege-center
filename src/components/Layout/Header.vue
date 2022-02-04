@@ -45,36 +45,54 @@
           </div>
         </div>
 
-        <ul class="header__menu">
-          <li v-for="(li, idx) in menu" :key="idx">
-            <a v-if="li.submenu">{{ li.label }} <SvgIcon name="caret" /></a>
-            <router-link v-else :to="li.to">{{ li.label }}</router-link>
+        <slide-up-down :active="menuActive" class="header__menu-opener">
+          <div class="header__menu">
+            <li v-for="(li, idx) in menu" :key="idx">
+              <a
+                v-if="li.submenu"
+                :class="[activeSubmenu === idx && 'is-active']"
+                @click="handleSubmenuClick(idx)"
+              >
+                {{ li.label }} <SvgIcon name="caret" />
+              </a>
+              <router-link v-else :to="li.to">{{ li.label }}</router-link>
 
-            <ul v-if="li.submenu">
-              <li v-for="(subli, idx) in li.submenu" :key="idx">
-                <div class="header__menu-sub">{{ subli.title }} <SvgIcon name="caret" /></div>
-                <ul v-if="subli.list">
-                  <li v-for="(lastli, idx) in subli.list" :key="idx">
-                    <router-link :to="lastli.to">{{ lastli.label }}</router-link>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-        </ul>
+              <slide-up-down :active="activeSubmenu === idx" v-if="li.submenu" tag="ul">
+                <li v-for="(subli, idx) in li.submenu" :key="idx">
+                  <div
+                    class="header__menu-sub"
+                    :class="[activeSubmenu2Lvl === idx && 'is-active']"
+                    @click="handleSubmenu2Click(idx)"
+                  >
+                    {{ subli.title }} <SvgIcon name="caret" />
+                  </div>
+                  <slide-up-down :active="activeSubmenu2Lvl === idx" v-if="subli.list" tag="ul">
+                    <li v-for="(lastli, idx) in subli.list" :key="idx">
+                      <router-link :to="lastli.to">{{ lastli.label }}</router-link>
+                    </li>
+                  </slide-up-down>
+                </li>
+              </slide-up-down>
+            </li>
+          </div>
+        </slide-up-down>
       </div>
     </div>
   </header>
 </template>
 
 <script>
-import throttle from "lodash/throttle"
-import { mapMutations } from "vuex"
+import SlideUpDown from "vue-slide-up-down"
 
 export default {
+  components: {
+    SlideUpDown,
+  },
   data() {
     return {
       menuActive: false,
+      activeSubmenu: null,
+      activeSubmenu2Lvl: null,
 
       menu: [
         {
@@ -141,9 +159,15 @@ export default {
       ],
     }
   },
-
   methods: {
-    ...mapMutations("ui", ["setModal"]),
+    handleSubmenuClick(idx) {
+      console.log(idx)
+      this.activeSubmenu = this.activeSubmenu === idx ? null : idx
+    },
+    handleSubmenu2Click(idx) {
+      console.log(idx)
+      this.activeSubmenu2Lvl = this.activeSubmenu2Lvl === idx ? null : idx
+    },
   },
 }
 </script>
@@ -155,11 +179,6 @@ export default {
   left: 0;
   right: 0;
   z-index: 9;
-  min-width: 320px;
-  will-change: transform;
-  // backface-visibility: hidden;
-  transform: translate3d(0, 0, 0);
-  transition: transform 0.25s $ease;
   &__wrapper {
     position: relative;
     background: white;
@@ -222,21 +241,38 @@ export default {
     margin-left: 20px;
   }
 
+  &__menu-opener {
+    padding: 14px 0;
+    transition-timing-function: linear;
+    // backface-visibility: hidden;
+    // transform: translateZ(0);
+    // will-change: height;
+  }
+
   &__menu {
-    margin: 14px 0;
+    margin: 0px 0;
     padding: 0;
     li {
       display: block;
       font-size: 16px;
       line-height: 15px;
       margin: -6px -4px 20px;
+
       ul {
         margin: 18px 4px 14px 22px;
+        transition-timing-function: linear;
+        // backface-visibility: hidden;
+        // transform: translateZ(0);
+        // will-change: height;
         li {
           font-size: 14px;
         }
       }
     }
+    > li:last-child {
+      margin-bottom: 0;
+    }
+
     a {
       display: inline-flex;
       align-items: center;
@@ -246,9 +282,16 @@ export default {
       .svg-icon {
         margin-left: 10px;
         font-size: 6px;
+        will-change: transform;
+        transition: transform 0.25s $ease;
       }
       &:hover {
         color: $colorPrimary;
+      }
+      &.is-active {
+        .svg-icon {
+          transform: rotate(180deg);
+        }
       }
     }
   }
@@ -262,9 +305,16 @@ export default {
     .svg-icon {
       margin-left: 10px;
       font-size: 6px;
+      will-change: transform;
+      transition: transform 0.25s $ease;
     }
     &:hover {
       color: $colorPrimary;
+    }
+    &.is-active {
+      .svg-icon {
+        transform: rotate(180deg);
+      }
     }
   }
 }
