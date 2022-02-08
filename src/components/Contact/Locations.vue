@@ -52,6 +52,7 @@
                       :zoom="map.zoom"
                       :controls="map.controls"
                       :scroll-zoom="false"
+                      :options="{ suppressMapOpenBlock: true }"
                     >
                       <ymap-marker
                         :marker-id="getMarker(1).id"
@@ -117,6 +118,7 @@
                       :zoom="map.zoom"
                       :controls="map.controls"
                       :scroll-zoom="false"
+                      :options="{ suppressMapOpenBlock: true }"
                     >
                       <ymap-marker
                         :marker-id="getMarker(link.id).id"
@@ -266,7 +268,7 @@ export default {
     display: flex;
     flex-direction: column;
     position: relative;
-    height: 350px;
+    height: 280px;
     img,
     picture {
       position: absolute;
@@ -286,6 +288,9 @@ export default {
       border-radius: 10px;
       margin-right: 0;
     }
+    ::v-deep ymaps[class$="map-copyrights-promo"] {
+      display: none !important;
+    }
     ::v-deep ymaps[class$="balloon__close-button"] {
       background-image: url("data:image/svg+xml,%3Csvg width='18' height='18' viewBox='0 0 18 18' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M9 10.0016L1.00164 18L0 16.9984L7.99836 9L5.62878e-07 1.00164L1.00164 0L9 7.99836L16.9984 0L18 1.00164L10.0016 9L18 16.9984L16.9984 18L9 10.0016Z' fill='red'/%3E%3C/svg%3E%0A");
       opacity: 0.5;
@@ -301,7 +306,7 @@ export default {
     display: flex;
     align-items: center;
     font-weight: 500;
-    text-decoration: underline;
+
     cursor: pointer;
     transition: color 0.25s $ease;
     &:hover {
@@ -341,6 +346,9 @@ export default {
   border-top: 1px solid $borderColor;
   border-bottom: 1px solid $borderColor;
   margin-bottom: -1px;
+  &:last-child {
+    margin-bottom: 0;
+  }
   &__toggle {
     display: flex;
     align-items: center;

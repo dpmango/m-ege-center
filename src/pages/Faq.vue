@@ -28,7 +28,7 @@ export default {
 
 <style lang="scss" scoped>
 .faq {
-  margin-top: 30px;
+  padding-top: 30px;
   margin-bottom: 45px;
 }
 

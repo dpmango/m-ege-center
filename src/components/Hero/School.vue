@@ -30,7 +30,7 @@
       </div>
 
       <div class="hero__actions">
-        <UiButton size="big">Записаться на курсы</UiButton>
+        <UiButton size="big" @click="() => setModal('signup')">Записаться на курсы</UiButton>
       </div>
 
       <div class="hero__start">Запись в школу до <span>22 ноября 2021 г.</span></div>
@@ -39,11 +39,16 @@
 </template>
 
 <script>
+import { mapMutations } from "vuex"
+
 export default {
   data() {
     return {
       publicPath: process.env.BASE_URL,
     }
+  },
+  methods: {
+    ...mapMutations("ui", ["setModal"]),
   },
 }
 </script>

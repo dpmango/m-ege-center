@@ -32,7 +32,7 @@ export default {
 
 <style lang="scss" scoped>
 .course {
-  margin-top: 32px;
+  padding-top: 32px;
   margin-bottom: 70px;
 }
 

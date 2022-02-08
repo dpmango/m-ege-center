@@ -12,11 +12,11 @@
       </div>
 
       <swiper class="atmo__photos" :options="swiperOptions">
-        <swiper-slide class="atmo__photo">
-          <img src="/static/img/static/atmo-1.jpg" />
-        </swiper-slide>
         <swiper-slide class="atmo__photo atmo__photo--primary">
           <img src="/static/img/static/atmo-2.jpg" />
+        </swiper-slide>
+        <swiper-slide class="atmo__photo">
+          <img src="/static/img/static/atmo-1.jpg" />
         </swiper-slide>
         <swiper-slide class="atmo__photo">
           <img src="/static/img/static/atmo-3.jpg" />
@@ -33,6 +33,7 @@ export default {
       swiperOptions: {
         slidesPerView: "auto",
         spaceBetween: 10,
+        freeMode: true,
       },
     }
   },
@@ -66,12 +67,15 @@ export default {
     z-index: 1;
     flex: 0 0 195px;
     width: 195px;
+    height: 135px;
     border-radius: 20px;
     overflow: hidden;
     font-size: 0;
     user-select: none;
     img {
       width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
     &--primary {
       flex-basis: 266px;

@@ -39,7 +39,7 @@ export default {
 
 <style lang="scss" scoped>
 .banner {
-  margin: 48px 0 12px;
+  padding: 48px 0 12px;
   &__row {
     display: flex;
     justify-content: space-between;
@@ -66,12 +66,12 @@ export default {
     }
     &--left {
       width: 137px;
-      margin-left: -7px;
+      margin-left: 0px;
     }
     &--right {
       width: 120px;
       margin-top: -10px;
-      margin-right: -10px;
+      margin-right: 0px;
     }
   }
 }

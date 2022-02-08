@@ -40,7 +40,7 @@ export default {
 
 <style lang="scss" scoped>
 .teachers {
-  margin: 30px 0 0px;
+  padding: 30px 0 0px;
   &__subtitle {
     margin-top: 30px;
     max-width: 672px;

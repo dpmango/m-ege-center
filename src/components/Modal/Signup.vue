@@ -219,7 +219,7 @@ export default {
     background: rgba(0, 0, 0, 0);
     backface-visibility: hidden;
     will-change: background;
-    transition: background 0.25s $ease;
+    // transition: background 0.25s $ease;
   }
   &__body {
     position: relative;
@@ -231,7 +231,7 @@ export default {
     overflow-y: auto;
     will-change: transform;
     backface-visibility: hidden;
-    transition: transform 0.25s $ease;
+    // transition: transform 0.25s $ease;
   }
   &__close {
     position: absolute;
@@ -260,7 +260,7 @@ export default {
   &.is-active {
     pointer-events: all;
     .modal__wrapper {
-      background: rgba(0, 0, 0, 0.15);
+      background: white;
     }
     .modal__body {
       transform: translate3d(0, 0, 0);

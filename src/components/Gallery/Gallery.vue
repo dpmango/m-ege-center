@@ -19,6 +19,7 @@ export default {
       swiperOptions: {
         slidesPerView: "auto",
         spaceBetween: 14,
+        freeMode: true,
       },
     }
   },

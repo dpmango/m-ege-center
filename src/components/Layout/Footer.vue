@@ -32,6 +32,9 @@
         <div class="footer__subtitle">
           Сеть центров по подготовке школьников 9-11 класса к ОГЭ и ЕГЭ
         </div>
+        <a class="footer__phone" href="tel:+74956468592">
+          <SvgIcon name="phone" />
+        </a>
       </div>
 
       <div class="footer__grid">
@@ -159,7 +162,20 @@ export default {
       color: #000000;
     }
   }
-
+  &__phone {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: inline-block;
+    font-size: 0;
+    transition: color 0.25s $ease;
+    .svg-icon {
+      font-size: 20px;
+    }
+    &:hover {
+      color: $colorPrimary;
+    }
+  }
   &__subtitle {
     flex: 0 0 auto;
     position: relative;

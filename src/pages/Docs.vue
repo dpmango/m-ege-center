@@ -34,7 +34,7 @@ export default {
 
 <style lang="scss" scoped>
 .docs {
-  margin-top: 32px;
+  padding-top: 32px;
   margin-bottom: 64px;
   .h2-title {
     line-height: 1.2;

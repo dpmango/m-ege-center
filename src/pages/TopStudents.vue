@@ -62,7 +62,7 @@ export default {
 
 <style lang="scss" scoped>
 .students {
-  margin-top: 32px;
+  padding-top: 32px;
   &__head {
     p {
       margin-top: 24px;

@@ -14,7 +14,7 @@
 .notFound {
   position: relative;
   text-align: center;
-  margin: 70px 0 85px;
+  padding: 70px 0 85px;
   &__decor {
     margin: 20px 0;
     font-size: 140px;
@@ -23,7 +23,7 @@
     color: $colorPrimary;
   }
   &__description {
-    margin: 16px auto;
+    margin: 16px auto 0;
     max-width: 225px;
     font-weight: normal;
     font-size: 20px;

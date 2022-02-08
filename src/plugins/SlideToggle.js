@@ -90,12 +90,12 @@ export default {
         this.$emit("open-start")
 
         if (this.initial) {
-          this.setHeight("0px", () => this.el.scrollHeight + this.fixPxForward + "px")
+          this.setHeight("0px", () => this.el.scrollHeight + this.fixPxForward + "px", "opening")
         }
       } else {
         this.$emit("close-start")
 
-        this.setHeight(this.el.scrollHeight + this.fixPxBackward + "px", () => "0px")
+        this.setHeight(this.el.scrollHeight + "px", () => "0px", "closing")
       }
     },
 
@@ -107,7 +107,7 @@ export default {
       }
     },
 
-    setHeight(temp, afterRelayout) {
+    setHeight(temp, afterRelayout, type) {
       this.asap(() => {
         // force relayout so the animation will run
         this.__ = this.el.scrollHeight

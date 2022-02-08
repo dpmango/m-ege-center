@@ -36,7 +36,7 @@
               <SvgIcon name="phone" />
             </a>
             <div class="header__hamburger" @click="() => (menuActive = !menuActive)">
-              <div class="hamburger" :class="[menuActive && 'is-active']">
+              <div class="hamburger">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -45,7 +45,7 @@
           </div>
         </div>
 
-        <slide-up-down :active="menuActive" class="header__menu-opener" :fixPxForward="-4">
+        <slide-up-down :active="menuActive" class="header__menu-opener" :fixPxForward="0">
           <div class="header__menu">
             <li v-for="(li, idx) in menu" :key="idx">
               <a
@@ -61,7 +61,7 @@
                 :active="activeSubmenu === idx"
                 v-if="li.submenu"
                 tag="ul"
-                :fixPxForward="-26"
+                :fixPxForward="0"
               >
                 <li v-for="(subli, idx) in li.submenu" :key="idx">
                   <div
@@ -75,7 +75,7 @@
                     :active="activeSubmenu2Lvl === idx"
                     v-if="subli.list"
                     tag="ul"
-                    :fixPxForward="-26"
+                    :fixPxForward="0"
                   >
                     <li v-for="(lastli, idx) in subli.list" :key="idx">
                       <router-link :to="lastli.to">{{ lastli.label }}</router-link>
@@ -259,10 +259,10 @@ export default {
       display: block;
       font-size: 16px;
       line-height: 15px;
-      margin: 0px 0px 26px;
+      margin: 0px 0px 0px;
 
       ul {
-        margin: 24px 0px 14px 18px;
+        margin: 0px 0px 0px 18px;
         // backface-visibility: hidden;
         // transform: translateZ(0);
         // will-change: height;
@@ -279,6 +279,7 @@ export default {
       display: inline-flex;
       align-items: center;
       padding: 0px 0px;
+      margin-bottom: 26px;
       cursor: pointer;
       transition: color 0.25s $ease;
       .svg-icon {
@@ -302,6 +303,7 @@ export default {
     align-items: center;
     font-size: 14px;
     padding: 0px 4px;
+    margin-bottom: 26px;
     transition: color 0.25s $ease;
     cursor: pointer;
     .svg-icon {

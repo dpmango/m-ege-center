@@ -146,6 +146,7 @@ export default {
       swiperOptions: {
         slidesPerView: "auto",
         spaceBetween: 16,
+        freeMode: true,
       },
     }
   },
@@ -159,7 +160,7 @@ export default {
 
 <style lang="scss" scoped>
 .price {
-  margin: 32px 0 44px;
+  padding: 32px 0 0px;
   &__subtitle {
     margin-top: 14px;
     line-height: 1.5;
